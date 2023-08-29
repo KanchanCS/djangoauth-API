@@ -11,6 +11,17 @@ env\Scripts\activate
 python3 -m venv env
 source env/bin/activate
 ```
+
+```
+pip install djangorestframework
+```
+Add 'rest_framework' to your INSTALLED_APPS setting.
+```
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+]
+```
 2 Set up the database:
 ```
 python manage.py migrate
