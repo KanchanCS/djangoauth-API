@@ -1,7 +1,7 @@
 # Django REST Framework Complete Authentication API with Simple JWT
 ## To Run this Project follow below: 
 
-1. Create a virtual environment:
+1. Create a virtual environment:    
 ```
 # On Windows
 python -m venv env
