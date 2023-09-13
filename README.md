@@ -24,5 +24,5 @@ python manage.py createsuperuser
 ```
 python manage.py runserver
 ```
-5. Access the application:
+5. Access the application:                    
 Open your web browser and go to http://localhost:8000/ to access the project.
