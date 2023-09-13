@@ -9,7 +9,7 @@ env\Scripts\activate
 
 # On macOS/Linux
 python3 -m venv env
-source env/bin/activate
+source env/bin/activate                 
 ```
 2 Set up the database:
 ```
