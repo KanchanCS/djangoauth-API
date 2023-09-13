@@ -22,7 +22,7 @@ python manage.py createsuperuser
 ```
 4. Run the development server:
 ```
-python manage.py runserver
+python manage.py runserver                
 ```
 5. Access the application:                    
 Open your web browser and go to http://localhost:8000/ to access the project.
