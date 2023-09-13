@@ -15,7 +15,8 @@ source env/bin/activate
 ```
 python manage.py migrate
 ```
-3. Create a superuser (admin) account:
+3. Create a superuser (admin) account:              
+
 ```
 python manage.py createsuperuser
 ```
