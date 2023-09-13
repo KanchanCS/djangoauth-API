@@ -12,7 +12,7 @@ python3 -m venv env
 source env/bin/activate                 
 ```
 2 Set up the database:
-```
+```                 
 python manage.py migrate
 ```
 3. Create a superuser (admin) account:              
