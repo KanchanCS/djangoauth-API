@@ -3,7 +3,7 @@ from account.serializers import (
     UserLoginSerializer,
     UserProfileSerializer,
     UserRegistrationSerializer,
-    
+    UserChangePasswordSerializer
 )
 from django.contrib.auth import authenticate
 from rest_framework import status
@@ -56,6 +56,12 @@ class UserProfileView(APIView):
     serializer = UserProfileSerializer(request.user)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-
+class UserChangePasswordView(APIView):
+    renderer_classes = [UserRenderer]
+    permission_classes = [IsAuthenticated]
+    def post(self, requsest, format=None):
+        serializer = UserChangePasswordSerializer(data=requsest.data, context={'user':requsest.user})
+        if serializer.is_valid(raise_exception=True):
+          return Response({'msg':'Password changed Successfully'},status=status.HTTP_200_OK)
     
          
