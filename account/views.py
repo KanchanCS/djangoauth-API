@@ -4,7 +4,8 @@ from account.serializers import (
     UserProfileSerializer,
     UserRegistrationSerializer,
     UserChangePasswordSerializer,
-    SendPasswordRestEmailSerializer
+    SendPasswordRestEmailSerializer,
+    UserPasswordResetSerializer
 )
 from django.contrib.auth import authenticate
 from rest_framework import status
@@ -23,7 +24,8 @@ def get_tokens_for_user(user):
     'refresh': str(refresh),
     'access': str(refresh.access_token),
     }
-    
+
+
 class UserRegistrationView(APIView):
   renderer_classes= [UserRenderer]
   def post(self, request, format=None):
@@ -57,6 +59,7 @@ class UserProfileView(APIView):
     serializer = UserProfileSerializer(request.user)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
+
 class UserChangePasswordView(APIView):
     renderer_classes = [UserRenderer]
     permission_classes = [IsAuthenticated]
@@ -64,7 +67,8 @@ class UserChangePasswordView(APIView):
         serializer = UserChangePasswordSerializer(data=requsest.data, context={'user':requsest.user})
         if serializer.is_valid(raise_exception=True):
           return Response({'msg':'Password changed Successfully'},status=status.HTTP_200_OK)
-    
+
+
 class SendPasswordRestEmailView(APIView):
   renderer_classes = [UserRenderer]
   def post(self, request, format=None):
@@ -72,4 +76,13 @@ class SendPasswordRestEmailView(APIView):
     if serializer.is_valid(raise_exception=True):
       return Response({'msg':'Password Reast link send. Please check your Email'},status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)           
-    
+
+class UserPasswordResetView(APIView):
+  renderer_classes = [UserRenderer]
+  def post(self, request,uid,token, format=None):
+    serializer = UserPasswordResetSerializer(data=request.data, context={'uid':uid, 'token':token})
+    if serializer.is_valid(raise_exception=True):
+      return Response({'msg':'Password Reset Successfully'},status=status.HTTP_200_OK)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
+
+
